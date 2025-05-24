@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مواعيد الرخيازات</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .calendar-container {
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .calendar-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .log-title {
+            text-align: center;
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .sub-title {
+            text-align: center;
+            color: #777;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .calendar {
+            width: 100%;
+            background-color: white;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .days, .dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+        }
+        
+        .days div {
+            font-weight: bold;
+            padding: 5px 0;
+            color: #333;
+        }
+        
+        .dates div {
+            padding: 10px 0;
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .dates div:hover {
+            background-color: #e0f0ff;
+        }
+        
+        .dates .selected {
+            background-color: #2196f3;
+            color: white;
+            border-radius: 5px;
+        }
+        
+        .notes-list {
+            background-color: white;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        
+        .notes-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .notes-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .notes-list li:last-child {
+            border-bottom: none;
+        }
+        
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 5px 10px;
+        }
+        
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #eee;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar-container">
+        <h1 class="calendar-title">مواعيد الاختبارات</h1>
+     <div style="display: flex;">
+           <h2 class="log-title">اختبارات المعاملات الاسلامية</h2>
+        <p class="sub-title">15 يوم</p>
+     </div>
+        
+        <div class="calendar">
+            <div class="header">
+                <button id="next"><</button>
+                <span id="month-year">March 2022</span>
+                <button id="prev"><</button>
+            </div>
+            <div class="days">
+                <div>SAT</div>
+                <div>FRI</div>
+                <div>THU</div>
+                <div>WED</div>
+                <div>TUE</div>
+                <div>MON</div>
+                <div>SUN</div>
+            </div>
+            <div class="dates" id="dates">
+                <!-- سيتم ملء الأيام هنا بواسطة الجافاسكريبت -->
+            </div>
+        </div>
+        
+        <hr>
+        
+        <div class="notes-list">
+            <ul>
+                <li>النابحة</li>
+                <li>الخيار</li>
+                <li>مثال التسجيل</li>
+                <li>التاريخ</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const monthYear = document.getElementById("month-year");
+        const datesDiv = document.getElementById("dates");
+        const prevBtn = document.getElementById("prev");
+        const nextBtn = document.getElementById("next");
+
+        // تاريخ مارس 2022 كما في الصورة
+        let currentDate = new Date(2022, 2, 1); // شهر مارس (2 لأن الأشهر تبدأ من 0)
+        let selectedDay = null;
+
+        function renderCalendar(date) {
+            datesDiv.innerHTML = "";
+            const year = date.getFullYear();
+            const month = date.getMonth();
+
+            monthYear.innerText = `${date.toLocaleString("default", { month: "long" })} ${year}`;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const lastDate = new Date(year, month + 1, 0).getDate();
+            const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+            // فراغات قبل أول يوم (أيام من الشهر السابق)
+            // في الصورة نرى أيام فبراير (28) في بداية التقويم
+            let prevMonthDaysToShow = firstDay;
+            let startPrevMonthDay = daysInPrevMonth - prevMonthDaysToShow + 1;
+            
+            for (let i = startPrevMonthDay; i <= daysInPrevMonth; i++) {
+                const dayDiv = document.createElement("div");
+                dayDiv.textContent = i;
+                dayDiv.style.color = "#aaa"; // جعلها باهتة
+                datesDiv.appendChild(dayDiv);
+            }
+
+            // الأيام الفعلية للشهر الحالي
+            for (let i = 1; i <= lastDate; i++) {
+                const dayDiv = document.createElement("div");
+                dayDiv.textContent = i;
+
+                if (
+                    selectedDay &&
+                    selectedDay.getFullYear() === year &&
+                    selectedDay.getMonth() === month &&
+                    selectedDay.getDate() === i
+                ) {
+                    dayDiv.classList.add("selected");
+                }
+
+                dayDiv.addEventListener("click", () => {
+                    selectedDay = new Date(year, month, i);
+                    renderCalendar(currentDate);
+                });
+
+                datesDiv.appendChild(dayDiv);
+            }
+
+            // أيام من الشهر التالي لملء الصف الأخير
+            const totalCells = 7 * 6; // 6 صفوف كحد أقصى
+            const remainingCells = totalCells - (prevMonthDaysToShow + lastDate);
+            
+            for (let i = 1; i <= remainingCells; i++) {
+                const dayDiv = document.createElement("div");
+                dayDiv.textContent = i;
+                dayDiv.style.color = "#aaa"; // جعلها باهتة
+                datesDiv.appendChild(dayDiv);
+            }
+        }
+
+        prevBtn.onclick = () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar(currentDate);
+        };
+
+        nextBtn.onclick = () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar(currentDate);
+        };
+
+        // عرض التقويم بالشكل الموجود في الصورة (مارس 2022)
+        renderCalendar(currentDate);
+    </script>
+</body>
+</html>

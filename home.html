@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="ar" >
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الصفحة الرئيسية</title>
+
+  <!-- Tajawal Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
+    rel="stylesheet" />
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  
+  <!-- Custom Fonts -->
+  <link rel="stylesheet" href="/font.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/icons/Mujtaz.ico" type="image/x-icon" />
+
+  <!-- Bootstrap RTL -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.rtl.min.css"
+    integrity="sha512-VNBisELNHh6+nfDjsFXDA6WgXEZm8cfTEcMtfOZdx0XTRoRbr/6Eqb2BjqxF4sNFzdvGIt+WqxKgn0DSfh2kcA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Page Styles -->
+  <link rel="stylesheet" href="/home.style.css" />
+  <link rel="icon" href="Mujtaz.ico" type="image/x-icon" />
+<!-- AOS CSS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<!-- AOS JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+</head>
+
+<body>
+  <!-- Small Screen Navigation -->
+  <nav class="small d-lg-none d-sm-flex justify-content-between d-flex m-3">
+    <div class="account d-flex gap-2">
+      <div><img src="/assets/icons/Ellipse 1.svg" alt="صورة المستخدم" /></div>
+      <div class="sm-icon d-flex justify-content-center align-items-center" onclick="getNotifications()"
+        id="notificationBtn">
+        <img src="/assets/icons/Group 2white.svg" alt="جرس الإشعارات" />
+      </div>
+    </div>
+    <div class="hamburger d-flex justify-content-center align-items-center" onclick="showSideBar()">
+      <img src="/assets/icons/Frame 275.svg" alt="قائمة" />
+    </div>
+    
+  </nav>
+
+  <!-- Main Layout -->
+  <div class="d-flex flex-row-reverse">
+    <!-- Sidebar for Large Screens -->
+    <div class="sidebar-lg p-5" id="sidebar-lg" style="width: 20%;">
+      <div class="sidebar-logo-lg">
+        <h1><img src="./assets/icons/Group 1.svg" alt="شعار مجتاز"> مجتاز</h1>
+      </div>
+      <hr>
+      <div>
+        <div class="sidebar-links-lg">
+          <!-- Active Link -->
+          <div class="link-line-lg active2" onclick="setActiveLink_lg(this)" id="mainpage">
+            <img src="/assets/icons/Component 1 (1).svg" alt="الصفحة الرئيسية" class="me-2">
+            <p>الصفحة الرئيسية</p>
+          </div>
+          
+          <!-- Other Links -->
+          <div class="d-flex flex-column">
+            <div class="link-line-lg" onclick="setActiveLink_lg(this)" id="questionbank">
+              <p><img src="./assets/icons/bank.svg" alt="بنك الأسئلة"></p>
+              <p>بنك الاسئلة</p>
+            </div>
+            <div class="link-line-lg" onclick="setActiveLink_lg(this)" id="resultspage">
+              <p><img src="./assets/icons/result.svg" alt="النتائج"></p>
+              <p>النتائج</p>
+            </div>
+            <div class="link-line-lg mb-5" onclick="setActiveLink_lg(this)" id="subscriptionpage">
+              <p><img src="./assets/icons/ticket-expired.svg" alt="الاشتراكات"></p>
+              <p>اشتراكاتى</p>
+            </div>
+
+            <!-- Logout Section -->
+            <div>
+              <div class="logout-container p-3 d-none logout" >
+                <p>هل انت متأكد من تسجيل الخروج؟</p>
+                <div class="d-flex gap-3">
+                  <button class="logout-btn" onclick="logOut()">تسجيل الخروج</button>
+                  <button class="cancel-btn" onclick="hideLogout()">رجوع</button>
+                </div>
+              </div>
+              <div class="d-flex gap-2 mt-5">
+                <p><img src="./assets/icons/out.svg" alt="تسجيل خروج"></p>
+                <p style="color: #FCA5A5;" onclick="showLogout()">تسجيل الخروج</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-bottom-line"></div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main style="width: 80%;" class="mb-5">
+      <header >
+        <!-- Sidebar for Small Screens (Hidden by default) -->
+   <div class="sidebar d-lg-block p-5" id="sidebar">
+
+  <div class="sidebar-logo">
+    <h1><img src="./assets/icons/Group 1.svg" alt=""> مجتاز</h1>
+  </div>
+  <hr>
+  <div>
+    <div class="sidebar-links">
+      <div class="link-line active" onclick="setActiveLink(this)" id="mainpage">
+        <img src="/assets/icons/Component 1 (1).svg" alt="" class="me-2">
+        <p>الصفحة الرئيسية</p>
+      </div>
+      <div class="d-flex flex-column">
+        <div class="link-line" onclick="setActiveLink(this)" id="questionbank">
+        <p><img src="./assets/icons/bank.svg" alt=""></p>
+        <p>بنك الاسئلة</p>
+      </div>
+      <div class="link-line" onclick="setActiveLink(this)" is="resultspage">
+        <p><img src="./assets/icons/result.svg" alt=""></p>
+        <p>النتائج</p>
+      </div>
+      <div class="link-line mb-5" onclick="setActiveLink(this)" id="subscriptionpage">
+        <p><img src="./assets/icons/ticket-expired.svg" alt=""></p>
+        <p>اشتراكاتى</p>
+      </div>
+      <!-- Logout Section -->
+            <div>
+              <div class="logout-container p-3 d-none logout" id="">
+                <p>هل انت متأكد من تسجيل الخروج؟</p>
+                <div class="d-flex gap-3 ">
+                  <button class="logout-btn" onclick="logOut()">تسجيل الخروج</button>
+                  <button class="cancel-btn" onclick="hideLogout()">رجوع</button>
+                </div>
+              </div>
+              <div class="d-flex gap-2 mt-5">
+                <p><img src="./assets/icons/out.svg" alt="تسجيل خروج"></p>
+                <p style="color: #FCA5A5;" onclick="showLogout()">تسجيل الخروج</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        </div>
+          </div>
+          <div class="  d-flex  large-nav direction justify-content-between p-3 d-sm-none">
+ <div class="logo direction ">
+            <p class="">
+              <img src="/assets/icons/Component 1 (1).svg" alt="الصفحة الرئيسية" class="me-2" />
+              الصفحة الرئيسية
+            </p>
+          </div>
+              <div class=" d-flex gap-2 " style="direction: ltr;">
+      <div><img src="/assets/icons/Ellipse 1.svg" alt="صورة المستخدم" /></div>
+      <div class="sm-icon d-flex justify-content-center align-items-center" onclick="getNotifications()"
+        id="notificationBtn">
+        <img src="/assets/icons/Group 2white.svg" alt="جرس الإشعارات" />
+      </div>
+      
+    </div>
+          </div>
+         
+        </nav>
+
+        <!-- Notifications Panel -->
+       
+      </header>
+
+      <!-- Dashboard Section -->
+      <section>
+        <!-- Small Screen Logo -->
+        <div class="small-screen-logo direction d-lg-none d-sm-flex p-3">
+          <p class="">
+            <img src="/assets/icons/Component 1 (1).svg" alt="الصفحة الرئيسية" class="me-2" />
+            الصفحة الرئيسية
+          </p>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard d-flex gap-3 container-fluid align-items-center">
+          <!-- Calendar Widget -->
+          <div class="calendar-container large-screen-calendar"  data-aos="fade-right"
+   data-aos-anchor="#example-anchor"
+     data-aos-offset="500"
+     data-aos-duration="500">
+            <div class="calendar">
+              <div class="d-flex calendar-header p-3 rounded-top-2 justify-content-center gap-2 text-light">
+                <h4 class="text-center">مواعيد الاختبارات</h4><img src="./assets/icons/clock.svg" alt="ساعة">
+              </div>
+              <div class="d-flex justify-content-between direction calendar-title text-light p-2">
+                <h6 class="log-title">اختبارات المعاملات الاسلامية</h6>
+                <p class="sub-title">15 يوم</p>
+              </div>
+              <div class="header p-2 fw-bold" style="color: #1E44AF;">
+                <button id="prev" class="border-0 bg-transparent" style="color: #1E44AF;"><img
+                    src="./assets/icons/arrowPrev.svg" alt="السابق"></button>
+                <span id="month-year"></span>
+                <button id="next" class="border-0 bg-transparent" style="color: #1E44AF;"><img
+                    src="./assets/icons/ArrowNext.svg" alt="التالي"></button>
+              </div>
+              <div class="days">
+                <div>الأحد</div>
+                <div>الاثنين</div>
+                <div>الثلاثاء</div>
+                <div>الأربعاء</div>
+                <div>الخميس</div>
+                <div>الجمعة</div>
+                <div>السبت</div>
+              </div>
+              <div class="dates" id="dates"></div>
+              <div class="selected-date d-flex direction justify-content-around" id="selected-date">
+                <div>
+                  <p class="calendar-after1">فتح التسجيل</p>
+                </div>
+                <div>
+                  <p class="calendar-after2">الاختبار</p>
+                </div>
+                <div>
+                  <p class="calendar-after3">النتيجة</p>
+                </div>
+                <div class="setting-icon" onclick="getRounds()"><img src="./assets/icons/setting.svg" alt="الإعدادات"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Cards -->
+          <div class="direction" style="width: 95%;">
+            <div class="d-flex gap-3 my-3 cards-scroll-wrapper">
+            <!-- Card 1: Available Courses -->
+<div class="rounded-3 p-4 custom-card1" data-aos="fade-down" data-aos-delay="100">
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center gap-2">
+      <p>الدورات المتاحة</p>
+      <span class="dropdown-arrow d-none" onclick="toggleCoursesDropdown(this)"></span>
+    </div>
+    <div class="card-icon card-icon1">
+      <img src="/assets/icons/money.svg" alt="الدورات" />
+    </div>
+  </div>
+  
+  <!-- Course Selection Dropdown -->
+  <div class="courses-dropdown d-none mt-2">
+    <select class="form-select" id="course-select">
+      <option value="">اختر الدورة</option>
+    </select>
+  </div>
+  
+  <h3 id="selected-course" class="d-none"></h3>
+  <div class="car1-ani"></div>
+</div>
+
+<!-- Card 2: Available Categories -->
+<div class="rounded-3 p-4 custom-card2" data-aos="fade-down" data-aos-delay="200">
+  <div class="d-flex align-items-center justify-content-between">
+    <p>التصنيفات المتاحة</p>
+    <div class="card-icon card-icon2">
+      <img src="/assets/icons/cats.svg" alt="التصنيفات" />
+    </div>
+  </div>
+  <h3 id="categories-count">55</h3>
+  <div class="car2-ani"></div>
+</div>
+
+<!-- Card 3: Total Tests -->
+<div class="rounded-3 p-4 custom-card3 position-relative" data-aos="fade-down" data-aos-delay="300">
+  <div class="d-flex align-items-center justify-content-between">
+    <p>الاختبارات الكلية</p>
+    <div class="card-icon card-icon3">
+      <img src="/assets/icons/exam.svg" alt="الاختبارات" />
+    </div>
+  </div>
+  <h3 id="tests-count">355</h3>
+  <div class="car3-ani"></div>
+</div>
+
+<!-- Card 4: Total Questions -->
+<div class="rounded-3 p-4 custom-card4" data-aos="fade-down" data-aos-delay="400">
+  <div class="d-flex align-items-center justify-content-between">
+    <p>الاسئلة الكلية</p>
+    <div class="card-icon card-icon4">
+      <img src="/assets/icons/ph_question.svg" alt="الأسئلة" />
+    </div>
+  </div>
+  <h3 id="questions-count">255</h3>
+  <div class="car4-ani"></div>
+</div>
+            </div>
+
+            <!-- Statistics Section -->
+            <div class="container-fluid">
+              <div class="d-flex align-items-center gap-2 direction">
+                <div><img src="./assets/icons/Property 1=vuesax, Property 2=linear, Property 3=status-up.svg" alt="إحصائيات"></div>
+                <div>
+                  <h4 style="color: #5B616E;">احصائياتى</h4>
+                </div>
+              </div>
+              
+              <div class="d-flex flex-row-reverse gap-2 p-3 h-100 justify-content-around align-items-center statictics">
+                <!-- Chart Section -->
+                <div class="chart"  data-aos="fade-right"
+   data-aos-anchor="#example-anchor"
+     data-aos-offset="500"
+     data-aos-duration="500">
+                  <div class="chart-container d-flex flex-column">
+                    <canvas id="myChart"></canvas>
+                    <div class="legend">
+                      <span><i style="background:#4CAF50;"></i> الاجابات الصحيحة</span>
+                      <span><i style="background:#F44336;"></i> الاجابات الخاطئة</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="d-flex gap-3  flex-wrap">
+                  <!-- Subscription Card -->
+                  <div class="stat-card bg-white rounded-3 p-2 shadow-sm"  data-aos="fade-left">
+                    <div class="d-flex align-items-center justify-content-between gap-5 " >
+                      <div class="d-flex align-items-center gap-1">
+                        <div class="stat-icon bg-primary-light rounded-circle p-2">
+                          <img src="/assets/icons/blue.svg" alt="اشتراكات" width="24">
+                        </div>
+                        <span class="fw-medium">اشتراكاتى</span>
+                      </div>
+                      <h4 class="mb-0 text-primary">2</h4>
+                    </div>
+                  </div>
+   <!-- Correct Answers Card -->
+                  <div class="stat-card bg-white rounded-3 p-2 shadow-sm"data-aos="fade-down">
+                    <div class="d-flex align-items-center justify-content-between gap-5">
+                      <div class="d-flex align-items-center gap-1">
+                        <div class="stat-icon bg-success-light rounded-circle p-2">
+                          <img src="/assets/icons/green.svg" alt="إجابات صحيحة" width="24">
+                        </div>
+                        <span class="fw-medium">الاجابات الصحيحة</span>
+                      </div>
+                      <h4 class="mb-0 text-success" id="correctCount">80</h4>
+                    </div>
+                  </div>
+
+
+                   <!-- Days Remaining Card -->
+                  <div class="stat-card bg-white rounded-3 p-2 shadow-sm">
+                    <div class="d-flex align-items-center justify-content-between gap-5">
+                      <div class="d-flex align-items-center gap-1">
+                        <div class="stat-icon bg-warning-light rounded-circle p-2">
+                          <img src="/assets/icons/timer.svg" alt="الوقت المتبقي" width="24">
+                        </div>
+                        <span class="fw-medium">الايام المتبقية</span>
+                      </div>
+                      <h4 class="mb-0 text-warning">11 d : 16 h.</h4>
+                    </div>
+                  </div>
+               
+                  <!-- Wrong Answers Card -->
+                  <div class="stat-card bg-white rounded-3 p-2 shadow-sm"data-aos="fade-up" data-aos-delay="400">
+                    <div class="d-flex align-items-center justify-content-between gap-5">
+                      <div class="d-flex align-items-center gap-1">
+                        <div class="stat-icon bg-danger-light rounded-circle p-2">
+                          <img src="/assets/icons/red.svg" alt="إجابات خاطئة" width="24">
+                        </div>
+                        <span class="fw-medium">الاجابات الخاطئة</span>
+                      </div>
+                      <h4 class="mb-0 text-danger" id="wrongCount">20</h4>
+                    </div>
+                  </div>
+               
+
+                  <!-- Completed Tests Card -->
+                  <div class="stat-card bg-white rounded-3 p-2 shadow-sm" data-aos="fade-left" data-aos-delay="200">
+                    <div class="d-flex align-items-center justify-content-between gap-5">
+                      <div class="d-flex align-items-center gap-1">
+                        <div class="stat-icon bg-primary-light rounded-circle p-2">
+                          <img src="/assets/icons/green.svg" alt="اختبارات مكتملة" width="24">
+                        </div>
+                        <span class="fw-medium">الاختبارات المكتملة</span>
+                      </div>
+                      <h4 class="mb-0 text-primary">2</h4>
+                    </div>
+                  </div>
+
+                  <!-- Upcoming Tests Card -->
+                  <div class="stat-card bg-white rounded-3 p-2 shadow-sm"  data-aos="fade-left" data-aos-delay="300">
+                    <div class="d-flex align-items-center justify-content-between gap-5">
+                      <div class="d-flex align-items-center gap-1">
+                        <div class="stat-icon bg-success-light rounded-circle p-2">
+                          <img src="/assets/icons/blue.svg" alt="اختبارات قادمة" width="24">
+                        </div>
+                        <span class="fw-medium">اختبارات لما تبدء بعد</span>
+                      </div>
+                      <h4 class="mb-0 text-success">2</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Admin Dashboard Section -->
+      <!-- في قسم Admin Dashboard -->
+<section>
+  <div class="m-3 d-flex gap-5 justify-content-evenly mx-5 admin-dash">
+    <div class="w-50" data-aos="fade-right"
+   data-aos-anchor="#example-anchor"
+     data-aos-offset="500"
+     data-aos-duration="500" >
+      <img src="./assets/icons/Frame 35.svg" alt="لوحة التحكم" class="rounded-3 w-100">
+    </div>
+    
+    <!-- الكاليندر الجديد بين الصورتين -->
+    <div class="calendar-container calendar-admin">
+      <div class="calendar">
+        <div class="d-flex calendar-header p-3 rounded-top-2 justify-content-center gap-2 text-light">
+          <h4 class="text-center">مواعيد الاختبارات</h4><img src="./assets/icons/clock.svg" alt="ساعة">
+        </div>
+        <div class="d-flex justify-content-between direction calendar-title text-light p-2">
+          <h6 class="log-title">اختبارات المعاملات الاسلامية</h6>
+          <p class="sub-title">15 يوم</p>
+        </div>
+        <div class="header p-2 fw-bold" style="color: #1E44AF;">
+          <button id="prev-admin" class="border-0 bg-transparent" style="color: #1E44AF;">
+            <img src="./assets/icons/arrowPrev.svg" alt="السابق">
+          </button>
+          <span id="month-year-admin"></span>
+          <button id="next-admin" class="border-0 bg-transparent" style="color: #1E44AF;">
+            <img src="./assets/icons/ArrowNext.svg" alt="التالي">
+          </button>
+        </div>
+        <div class="days">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tus</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+        </div>
+        <div class="dates" id="dates-admin"></div>
+        <div class="selected-date d-flex direction justify-content-around" id="selected-date-admin">
+          <div>
+            <p class="calendar-after1">فتح التسجيل</p>
+          </div>
+          <div>
+            <p class="calendar-after2">الاختبار</p>
+          </div>
+          <div>
+            <p class="calendar-after3">النتيجة</p>
+          </div>
+          <div class="setting-icon" onclick="getRounds()">
+            <img src="./assets/icons/setting.svg" alt="الإعدادات">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="w-50"  data-aos="fade-left"
+     data-aos-anchor="#example-anchor"
+     data-aos-offset="500"
+     data-aos-duration="500" >
+      <img src="./assets/icons/Frame 34.svg" alt="إحصائيات" class="rounded-3 w-100">
+    </div>
+  </div>
+</section>
+      <!-- Question Bank Section -->
+      <section>
+        <div class="container-md d-flex justify-content-between align-items-center">
+          <div>
+            <button class="btn btn-outline-primary">
+              <img src="/assets/icons/next.svg" alt="عرض الكل">عرض الكل
+            </button>
+          </div>
+          <div class="direction">
+            <img src="/assets/icons/Property 1=vuesax, Property 2=linear, Property 3=task-square.svg" alt="بنك الأسئلة">
+            بنك الاسئلة
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Rounds Selection Modal -->
+  <div class="rounds direction" style="background-color: #FFFFFF;" id="rounds">
+    <div class="p-2" style="direction: ltr;">
+      <img src="./assets/icons/exit.svg" alt="إغلاق" onclick="hideRounds()">
+    </div>
+    <h4 class="direction p-2" style="color: #1E44AF;">اختر الدورات التي تود استلام التنبيهات عنها</h4>
+    <div class="allrounds h-75 direction">
+      <!-- Course Selection Items -->
+      <div class="shadow p-2 rounded-2 m-3">
+        <div class="d-flex justify-content-between align-items-center" onclick="getexams()">
+          <p>اسم الدورة هنا</p>
+          <div><img src="./assets/icons/prev.svg" alt="عرض التفاصيل" id="up-arrow"></div>
+        </div>
+        <div class="exams d-none direction" id="exams">
+          <!-- Exam Selection Options -->
+          <div class="d-flex align-items-center gap-2" style="border-bottom: 1px solid darkgrey;">
+            <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+            <p> كل الاختبارات</p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+            <p>اسم الاختبار هنا</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+              <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+              <p>اسم الاختبار هنا</p>
+            </div>
+            <div>
+              <div class="d-flex bg-light rounded-5 p-2 gap-1 align-items-center" onclick="getCalender()">
+                <p><img src="./assets/icons/التوقيت.svg" alt="التوقيت"></p>
+                <p>تعيين توقيت التنبيه</p>
+              </div>
+            </div>
+          </div>
+          <!-- More exam options... -->
+        </div>
+      </div>
+      <!-- More course options... -->
+   <div class="shadow p-2 rounded-2 m-3">
+        <div class="d-flex justify-content-between align-items-center" onclick="getexams()">
+          <p>اسم الدورة هنا</p>
+          <div><img src="./assets/icons/prev.svg" alt="عرض التفاصيل" id="up-arrow"></div>
+        </div>
+        <div class="exams d-none direction" id="exams">
+          <!-- Exam Selection Options -->
+          <div class="d-flex align-items-center gap-2" style="border-bottom: 1px solid darkgrey;">
+            <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+            <p> كل الاختبارات</p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+            <p>اسم الاختبار هنا</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+              <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+              <p>اسم الاختبار هنا</p>
+            </div>
+            <div>
+              <div class="d-flex bg-light rounded-5 p-2 gap-1 align-items-center" onclick="getCalender()">
+                <p><img src="./assets/icons/التوقيت.svg" alt="التوقيت"></p>
+                <p>تعيين توقيت التنبيه</p>
+              </div>
+            </div>
+          </div>
+          <!-- More exam options... -->
+        </div>
+      </div>
+      <div class="shadow p-2 rounded-2 m-3">
+        <div class="d-flex justify-content-between align-items-center" onclick="getexams()">
+          <p>اسم الدورة هنا</p>
+          <div><img src="./assets/icons/prev.svg" alt="عرض التفاصيل" id="up-arrow"></div>
+        </div>
+        <div class="exams d-none direction" id="exams">
+          <!-- Exam Selection Options -->
+          <div class="d-flex align-items-center gap-2" style="border-bottom: 1px solid darkgrey;">
+            <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+            <p> كل الاختبارات</p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+            <p>اسم الاختبار هنا</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+              <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+              <p>اسم الاختبار هنا</p>
+            </div>
+            <div>
+              <div class="d-flex bg-light rounded-5 p-2 gap-1 align-items-center" onclick="getCalender()">
+                <p><img src="./assets/icons/التوقيت.svg" alt="التوقيت"></p>
+                <p>تعيين توقيت التنبيه</p>
+              </div>
+            </div>
+          </div>
+          <!-- More exam options... -->
+        </div>
+      </div>
+      <div class="shadow p-2 rounded-2 m-3">
+        <div class="d-flex justify-content-between align-items-center" onclick="getexams()">
+          <p>اسم الدورة هنا</p>
+          <div><img src="./assets/icons/prev.svg" alt="عرض التفاصيل" id="up-arrow"></div>
+        </div>
+        <div class="exams d-none direction" id="exams">
+          <!-- Exam Selection Options -->
+          <div class="d-flex align-items-center gap-2" style="border-bottom: 1px solid darkgrey;">
+            <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+            <p> كل الاختبارات</p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+            <p>اسم الاختبار هنا</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+              <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+              <p>اسم الاختبار هنا</p>
+            </div>
+            <div>
+              <div class="d-flex bg-light rounded-5 p-2 gap-1 align-items-center" onclick="getCalender()">
+                <p><img src="./assets/icons/التوقيت.svg" alt="التوقيت"></p>
+                <p>تعيين توقيت التنبيه</p>
+              </div>
+            </div>
+          </div>
+          <!-- More exam options... -->
+        </div>
+      </div>
+      <div class="shadow p-2 rounded-2 m-3">
+        <div class="d-flex justify-content-between align-items-center" onclick="getexams()">
+          <p>اسم الدورة هنا</p>
+          <div><img src="./assets/icons/prev.svg" alt="عرض التفاصيل" id="up-arrow"></div>
+        </div>
+        <div class="exams d-none direction" id="exams">
+          <!-- Exam Selection Options -->
+          <div class="d-flex align-items-center gap-2" style="border-bottom: 1px solid darkgrey;">
+            <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+            <p> كل الاختبارات</p>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+            <p>اسم الاختبار هنا</p>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+              <p><img src="./assets/icons/check_small.svg" alt="تحديد"></p>
+              <p>اسم الاختبار هنا</p>
+            </div>
+            <div>
+              <div class="d-flex bg-light rounded-5 p-2 gap-1 align-items-center" onclick="getCalender()">
+                <p><img src="./assets/icons/التوقيت.svg" alt="التوقيت"></p>
+                <p>تعيين توقيت التنبيه</p>
+              </div>
+            </div>
+          </div>
+          <!-- More exam options... -->
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Small Calendar Modal -->
+  <div class="calendar-small d-none direction" id="calendar-small">
+    <div class="d-flex calendar-header p-3 rounded-top-2 justify-content-center gap-2 text-light">
+      <h4 class="text-center">عين موعد التنبيه</h4>
+      <img src="./assets/icons/clock.svg" alt="التنبيه">
+    </div>
+    <div id="date-type-selector" class="mb-3">
+  <label><input type="radio" name="date-type" value="selected" checked> تسجيل امتحان </label>
+</div>
+
+    <div class="header p-2 fw-bold" style="color: #1E44AF;">
+      <button id="prev2" class="border-0 bg-transparent" style="color: #1E44AF;">
+        <img src="./assets/icons/arrowPrev.svg" alt="الشهر السابق">
+      </button>
+      <span id="month-year2"></span>
+      <button id="next2" class="border-0 bg-transparent" style="color: #1E44AF;">
+        <img src="./assets/icons/ArrowNext.svg" alt="الشهر التالي">
+      </button>
+    </div>
+    <div class="days">
+      <div>الأحد</div>
+      <div>الاثنين</div>
+      <div>الثلاثاء</div>
+      <div>الأربعاء</div>
+      <div>الخميس</div>
+      <div>الجمعة</div>
+      <div>السبت</div>
+    </div>
+    <div class="dates" id="dates2"></div>
+    <div class="d-flex justify-content-center gap-3 p-3">
+      <button class="btn btn-primary" onclick="saveDate()">حفظ</button>
+      <button class="btn btn-outline-secondary" onclick="removeDate()">إلغاء</button>
+    </div>
+  </div>
+
+  <!-- Exam Result Modal -->
+  <div class="round-details bg-light w-50 p-4 direction rounded-5 d-none" id="exam-result" >
+    <div class="round-details-success-header d-flex justify-content-between p-3">
+      <h3>بيانات الاختبار</h3>
+      <img src="./assets/icons/exit-white.svg" alt="إغلاق">
+    </div>
+    <div class="g-4 align-items-center d-flex mt-5 gap-3">
+      حالة الموعد
+      <div class="p-3 rounded-5" style="background-color:#EFF3FF;color: #1E44AF;">
+        نتيجة الاختبار
+      </div>
+    </div>
+    <div>
+      <p style="color: #5B616E;">اسم الدورة</p>
+      <div class="p-2 rounded-3 bg-darK" style="color: #111;background-color: #EFF3FF;">
+        <p> اسم الدورة هنا</p>
+      </div>
+    </div>
+    <div>
+      <p style="color: #5B616E;">اسم الاختبار</p>
+      <div class="p-2 rounded-3" style="color: #111; background-color: #EFF3FF;">
+        <p> اسم الاختبار هنا</p>
+      </div>
+    </div>
+    <div>
+      <p style="color: #5B616E;">تاريخ الاختبار</p>
+      <div class="p-2 rounded-3" style="color: #111;background-color: #EFF3FF;">
+        <p> تاريخ الاختبار هنا</p>
+      </div>
+    </div>
+  </div>
+<div>
+   <div class="notifications direction p-5 " id="notifications">
+          <div class="notification-header d-flex justify-content-between mb-1">
+            <h5>الاشعارات</h5>
+            <button class="btn btn-light">تمييز الكل كمقروء</button>
+          </div>
+          <div class="all d-flex flex-column gap-1" id="notificationList">
+            <!-- Notification Items -->
+            <div class="bg-light rounded-2 p-1">
+              <p>1تم الاشتراك بنجاح</p>
+              <p>تم الاشتراك الشهري بمادة المعاملات القانونية بنجاح ، يمكنك الان بدء الاختبارات بهذه المادة</p>
+              <span>10:25 ص، 21 فبراير 2025</span>
+            </div>
+             <div class="bg-light rounded-2 p-1">
+              <p>1تم الاشتراك بنجاح</p>
+              <p>تم الاشتراك الشهري بمادة المعاملات القانونية بنجاح ، يمكنك الان بدء الاختبارات بهذه المادة</p>
+              <span>10:25 ص، 21 فبراير 2025</span>
+            </div>
+             <div class="bg-light rounded-2 p-1">
+              <p>1تم الاشتراك بنجاح</p>
+              <p>تم الاشتراك الشهري بمادة المعاملات القانونية بنجاح ، يمكنك الان بدء الاختبارات بهذه المادة</p>
+              <span>10:25 ص، 21 فبراير 2025</span>
+            </div>
+            <!-- More notifications... -->
+          </div>
+          <!-- Pagination -->
+          <nav class="mt-3 d-flex justify-content-center">
+            <ul class="pagination d-flex gap-3" id="pagination"></ul>
+          </nav>
+
+
+        </div>
+</div>
+  <!-- Exam Time Modal -->
+  <div class="round-details bg-light w-50 p-4 direction rounded-5 d-none" id="exam-time" >
+    <div class="exam-time-details-header d-flex justify-content-between p-3 mb-5">
+      <h3>بيانات الاختبار</h3>
+      <img src="./assets/icons/exit-white.svg" alt="إغلاق">
+    </div>
+    <br>
+    <div class="g-4 align-items-center d-flex mt-5 gap-3">
+      حالة الموعد
+      <div class="p-1 rounded-5" style="background-color:#FFF8EB;color: #D98B06;">
+        نتيجة الاختبار
+      </div>
+    </div>
+    <div>
+      <p style="color: #5B616E;">اسم الدورة</p>
+      <div class="p-2 rounded-3 bg-darK" style="color: #111;background-color: #EFF3FF;">
+        <p> اسم الدورة هنا</p>
+      </div>
+    </div>
+    <div>
+      <p style="color: #5B616E;">اسم الاختبار</p>
+      <div class="p-2 rounded-3" style="color: #111; background-color: #EFF3FF;">
+        <p> اسم الاختبار هنا</p>
+      </div>
+    </div>
+    <div>
+      <p style="color: #5B616E;">تاريخ الاختبار</p>
+      <div class="p-2 rounded-3" style="color: #111;background-color: #EFF3FF;">
+        <p> تاريخ الاختبار هنا</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exam Registration Modal -->
+  <div class="round-details bg-light w-50 p-4 direction rounded-5 d-none" id="register-exam" >
+    <div class="ٌregister-exam-details-header d-flex justify-content-between p-3 mb-5">
+      <h3>بيانات الاختبار</h3>
+      <img src="./assets/icons/exit-white.svg" alt="إغلاق">
+    </div>
+    <br>
+    <div class="g-4 align-items-center d-flex mt-5 gap-3">
+      <p style="color: #5B616E;"> حالة الموعد</p>
+      <div class="p-1 rounded-5" style="background-color:#F7F8F8;color: #111;">
+        <p>نتيجة الاختبار</p>
+      </div>
+    </div>
+    <div>
+      <p style="color: #5B616E;">اسم الدورة</p>
+      <div class="p-2 rounded-3 bg-darK" style="color: #111;background-color: #EFF3FF;">
+        <p> اسم الدورة هنا</p>
+      </div>
+    </div>
+    <div>
+      <p style="color: #5B616E;">اسم الاختبار</p>
+      <div class="p-2 rounded-3" style="color: #111; background-color: #EFF3FF;">
+        <p> اسم الاختبار هنا</p>
+      </div>
+    </div>
+    <div>
+      <p style="color: #5B616E;">تاريخ الاختبار</p>
+      <div class="p-2 rounded-3" style="color: #111;background-color: #EFF3FF;">
+        <p> تاريخ الاختبار هنا</p>
+      </div>
+    </div>
+  </div>
+  <!-- Custom Script -->
+  <script src="./home.script.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+    integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <!-- <script>
+    AOS.init();
+  </script> -->
+
+</body>
+</html>
