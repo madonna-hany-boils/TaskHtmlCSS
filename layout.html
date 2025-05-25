@@ -1,116 +1,118 @@
 <!DOCTYPE html>
-<html lang="ar" >
+<html lang="ar" dir="rtl">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>الصفحة الرئيسية</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> نتيجــه الاختبار </title>
 
-  <!-- Tajawal Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
-    rel="stylesheet" />
-  
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-  
-  <!-- Custom Fonts -->
-  <link rel="stylesheet" href="/font.css" />
+    <!-- Tajawal Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap"
+        rel="stylesheet" />
 
-  <!-- Favicon -->
-  <link rel="icon" href="/assets/icons/Mujtaz.ico" type="image/x-icon" />
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="/css/components/font.css" />
 
-  <!-- Bootstrap RTL -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.rtl.min.css"
-    integrity="sha512-VNBisELNHh6+nfDjsFXDA6WgXEZm8cfTEcMtfOZdx0XTRoRbr/6Eqb2BjqxF4sNFzdvGIt+WqxKgn0DSfh2kcA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/icons/Mujtaz.ico" type="image/x-icon" />
 
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.rtl.min.css"
+        integrity="sha512-VNBisELNHh6+nfDjsFXDA6WgXEZm8cfTEcMtfOZdx0XTRoRbr/6Eqb2BjqxF4sNFzdvGIt+WqxKgn0DSfh2kcA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Page Styles -->
-  <link rel="stylesheet" href="/home.style.css" />
-  <link rel="icon" href="Mujtaz.ico" type="image/x-icon" />
-<!-- AOS CSS -->
-<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
 
-<!-- AOS JS -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- main layout -->
+    <link rel="stylesheet" href="./layout.main.home.style.css">
 
+    <link rel="stylesheet" href="./home.style.css">
+    
 </head>
 
 <body>
-  <!-- Small Screen Navigation -->
-  <nav class="small d-lg-none d-sm-flex justify-content-between d-flex m-3">
-    <div class="account d-flex gap-2">
-      <div><img src="/assets/icons/Ellipse 1.svg" alt="صورة المستخدم" /></div>
-      <div class="sm-icon d-flex justify-content-center align-items-center" onclick="getNotifications()"
-        id="notificationBtn">
-        <img src="/assets/icons/Group 2white.svg" alt="جرس الإشعارات" />
-      </div>
-    </div>
-    <div class="hamburger d-flex justify-content-center align-items-center" onclick="showSideBar()">
-      <img src="/assets/icons/Frame 275.svg" alt="قائمة" />
-    </div>
-    
-  </nav>
-
-  <!-- Main Layout -->
-  <div class="d-flex flex-row-reverse">
-    <!-- Sidebar for Large Screens -->
-    <div class="sidebar-lg p-5" id="sidebar-lg" style="width: 20%;">
-      <div class="sidebar-logo-lg">
-        <h1><img src="./assets/icons/Group 1.svg" alt="شعار مجتاز"> مجتاز</h1>
-      </div>
-      <hr>
-      <div>
-        <div class="sidebar-links-lg">
-          <!-- Active Link -->
-          <div class="link-line-lg active2" onclick="setActiveLink_lg(this)" id="mainpage">
-            <img src="/assets/icons/Component 1 (1).svg" alt="الصفحة الرئيسية" class="me-2">
-            <p>الصفحة الرئيسية</p>
-          </div>
-          
-          <!-- Other Links -->
-          <div class="d-flex flex-column">
-            <div class="link-line-lg" onclick="setActiveLink_lg(this)" id="questionbank">
-              <p><img src="./assets/icons/bank.svg" alt="بنك الأسئلة"></p>
-              <p>بنك الاسئلة</p>
-            </div>
-            <div class="link-line-lg" onclick="setActiveLink_lg(this)" id="resultspage">
-              <p><img src="./assets/icons/result.svg" alt="النتائج"></p>
-              <p>النتائج</p>
-            </div>
-            <div class="link-line-lg mb-5" onclick="setActiveLink_lg(this)" id="subscriptionpage">
-              <p><img src="./assets/icons/ticket-expired.svg" alt="الاشتراكات"></p>
-              <p>اشتراكاتى</p>
-            </div>
-
-            <!-- Logout Section -->
-            <div>
-              <div class="logout-container p-3 d-none logout" >
-                <p>هل انت متأكد من تسجيل الخروج؟</p>
-                <div class="d-flex gap-3">
-                  <button class="logout-btn" onclick="logOut()">تسجيل الخروج</button>
-                  <button class="cancel-btn" onclick="hideLogout()">رجوع</button>
+    <div class="container-fluid page-content">
+        <!-- Page Content -->
+        <div class="row">
+            <!-- side menu section  -->
+            <div class="col-2 sidemenu">
+                <!-- Logo -->
+                <div class="row">
+                    <img src="../assets/icons/logo-mujtaz.svg" class="logo-img col-3" alt="" />
+                    <h1 class="col-9 header-title">مجتـــــــاز</h1>
+                    <hr />
                 </div>
-              </div>
-              <div class="d-flex gap-2 mt-5">
-                <p><img src="./assets/icons/out.svg" alt="تسجيل خروج"></p>
-                <p style="color: #FCA5A5;" onclick="showLogout()">تسجيل الخروج</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sidebar-bottom-line"></div>
-      </div>
-    </div>
 
-    <!-- Main Content Area -->
-    <main style="width: 80%;" class="mb-5">
-      <header >
+                <div class="row sidemenu-list">
+                    <div class="col-12 sidemenu-item">
+                        <a href="#">
+                            <img src="../assets/icons/home-icon.svg" class="sidemenu-icon" alt="" />
+                            <span> الصفحة الرئيسية </span>
+                        </a>
+                    </div>
+
+                    <div class="col-12 sidemenu-item">
+                        <a href="QuestionsBank.html">
+                            <img src="../assets/icons/bank-icon.svg" class="sidemenu-icon" alt="" />
+                            <span>بنك الأسئلة</span>
+                        </a>
+                    </div>
+
+                    <div class="col-12 sidemenu-item active-sidemenu-item">
+                        <a href="results.html">
+                            <img src="../assets/icons/blue-results-icon.svg" class="sidemenu-icon" alt="" />
+                            <span> النتائج </span>
+                        </a>
+                    </div>
+
+                    <div class="col-12 sidemenu-item">
+                        <a href="#">
+                            <img src="../assets/icons/subscriptions-icon.svg" class="sidemenu-icon" alt="" />
+                            <span> اشتراكاتي </span>
+                        </a>
+                    </div>
+
+                    <div class="col-12 sidemenu-item logout-item">
+                        <a href="#">
+                            <img src="../assets/icons/logout-icon.svg" class="sidemenu-icon" alt="" />
+                            <span>تسجيل الخروج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- main content section  -->
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-11 main-content">
+                        <!-- Navbar -->
+                        <div class="row">
+                            <div class="col-12 navbar d-flex justify-content-between">
+                                <a href="#" class="text-white text-decoration-none fw-bold">
+                                    <img src="../assets/icons/blue-results-icon.svg" alt="" />
+                                    <h2>اختباراتي / <span id="exam-name"></span></h2>
+                                </a>
+
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="icon-circle">
+                                        <img src="../assets/icons/notification-icon.svg" class="navbar-icon"
+                                            alt="Notification" />
+                                    </div>
+                                    <div class="icon-circle">
+                                        <img src="../assets/images/user-img.png" class="navbar-user-icon"
+                                            alt="Notification" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+<!-- /home************************************************************************* -->
+   <header >
         <!-- Sidebar for Small Screens (Hidden by default) -->
    <div class="sidebar d-lg-block p-5" id="sidebar">
 
@@ -182,7 +184,7 @@
       <!-- Dashboard Section -->
       <section>
         <!-- Small Screen Logo -->
-        <div class="small-screen-logo direction d-lg-none d-sm-flex p-3">
+        <div class="small-screen-logo  d-lg-none d-sm-flex p-3">
           <p class="">
             <img src="/assets/icons/Component 1 (1).svg" alt="الصفحة الرئيسية" class="me-2" />
             الصفحة الرئيسية
@@ -823,19 +825,33 @@
       </div>
     </div>
   </div>
-  <!-- Custom Script -->
-  <script src="./home.script.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
-    integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <!-- <script>
-    AOS.init();
-  </script> -->
+
+
+<!-- home******************************************************************************** -->
+                            </div>
+                        </div>
+                        <!-- footer -->
+                    </div>
+                    <div class="col-11">
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-between footer-section">
+                                <p>جميع الحقوق محفوظة لموقع مجتاز &copy;2025</p>
+                                <p>تواصل معنا: Mujtaz@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+            integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+            </script>
+            <script src="./home.script.js"></script>
 
 </body>
+
 </html>

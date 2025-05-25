@@ -62,7 +62,20 @@ main {
 .card-icon2 { background-color: #f0fdf5; }
 .card-icon3 { background-color: #fef2f2; }
 .card-icon4 { background-color: #fff8eb; }
-
+.dropdown-course{
+  border-radius: 1px 20px 20px 20px;
+  position: absolute;
+  z-index: 999;
+  background-color: #f7f5f5;
+  color: #19306f;
+  height: auto;
+  max-height: 500px;
+  opacity: 1;
+  transition: 0.3s;
+  top: 32%;
+  right: 22%;
+  padding: 0.5rem;
+}
 /* Custom Card Base Styles */
 .custom-card1,
 .custom-card2,

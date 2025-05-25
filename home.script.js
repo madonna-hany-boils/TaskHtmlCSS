@@ -1,70 +1,68 @@
 
   AOS.init();
-
-//check if user register on one or more course or not
 var coursesData = [
   { id: '1', name: 'المحاسبة المالية', categories: '100', tests: '120', questions: '100' },
-  // { id: '2', name: ' المفاوضات', categories: '285', tests: '255', questions: '150' }
+  { id: '2', name: 'المفاوضات', categories: '285', tests: '255', questions: '150' }
 ];
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const userCoursesCount = coursesData.length; 
-
   const dropdownArrow = document.querySelector('.dropdown-arrow');
-  const dropdown = document.querySelector('.courses-dropdown');
+  const coursesList = document.querySelector('.courses-list');
   const selectedCourse = document.getElementById('selected-course');
-  const courseSelect = document.getElementById('course-select');
   
   if (userCoursesCount > 1) {
     dropdownArrow.classList.remove('d-none');
-    dropdown.classList.remove('d-none');
-    
-    // Clear existing options
-    courseSelect.innerHTML = '';
-    
-    // Add new options
-    coursesData.forEach(course => {
-      const option = document.createElement('option');
-      option.value = course.id;
-      option.textContent = course.name;
-      courseSelect.appendChild(option);
-    });
-    
-    // Set onChange event
-    courseSelect.addEventListener('change', (e) => {
-      updateDashboardData(e.target.value);
-    });
-    
-    // Set first course as default
     updateDashboardData(coursesData[0].id);
   } 
   else if (userCoursesCount === 1) {
-    selectedCourse.classList.remove('d-none');
     selectedCourse.textContent = coursesData[0].name;
     updateDashboardData(coursesData[0].id);
   }
 });
 
+function toggleCoursesList(arrow) {
+  const coursesList = document.querySelector('.courses-list');
+  arrow.classList.toggle('rotated'); 
+  if (coursesList.classList.contains('d-none')) {
+    coursesList.innerHTML = '';
+    coursesData.forEach(course => {
+      const courseItem = document.createElement('div');
+      courseItem.className = 'course-item p-2 mb-2 rounded';
+      courseItem.innerHTML = `
+        <div class="d-flex align-items-center justify-content-between">
+          <span>${course.name}</span>
+        </div>
+      `;
+      courseItem.addEventListener('click', () => {
+        updateDashboardData(course.id);
+        coursesList.classList.add('d-none');
+        arrow.classList.remove('rotated');
+      });
+      coursesList.appendChild(courseItem);
+    });
+    
+    coursesList.classList.remove('d-none');
 
-function toggleCoursesDropdown() {
-  const arrow = document.querySelector('.dropdown-arrow');
-  const dropdown = document.querySelector('.courses-dropdown');
-  
-  arrow.classList.toggle('rotated');
-  dropdown.classList.toggle('show');
+  } else {
+
+    setTimeout(() => {
+      coursesList.classList.add('d-none');
+    }, 300);
+  }
 }
 
 function updateDashboardData(courseId) {
   const course = coursesData.find(c => c.id === courseId);
   if (!course) return;
   
-  document.getElementById('selected-course').textContent = course.name;
-  document.querySelector('.custom-card2 h3').textContent = course.categories;
-  document.querySelector('.custom-card3 h3').textContent = course.tests;
-  document.querySelector('.custom-card4 h3').textContent = course.questions;
+  const selectedCourseElement = document.getElementById('selected-course');
+  selectedCourseElement.textContent = course.name;
+  // update other cards based on course
+  document.getElementById('categories-count').textContent = course.categories;
+  document.getElementById('tests-count').textContent = course.tests;
+  document.getElementById('questions-count').textContent = course.questions;
 }
-
 /**********************************************************
  *                       Chart رسم بياني                  *
  **********************************************************/
