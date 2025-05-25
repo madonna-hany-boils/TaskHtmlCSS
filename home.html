@@ -43,12 +43,12 @@
 
 <body>
   <!-- Small Screen Navigation -->
-  <nav class="small d-lg-none d-sm-flex justify-content-between d-flex m-3">
+  <nav class="small d-lg-none d-sm-flex justify-content-between d-flex m-3" style="direction: ltr;">
     <div class="account d-flex gap-2">
-      <div><img src="/assets/icons/Ellipse 1.svg" alt="صورة المستخدم" /></div>
+      <div><img src="/assets/icons/Ellipse1.svg" alt="صورة المستخدم" /></div>
       <div class="sm-icon d-flex justify-content-center align-items-center" onclick="getNotifications()"
         id="notificationBtn">
-        <img src="/assets/icons/Group 2white.svg" alt="جرس الإشعارات" />
+        <img src="/assets/icons/Group2white.svg" alt="جرس الإشعارات" />
       </div>
     </div>
     <div class="hamburger d-flex justify-content-center align-items-center" onclick="showSideBar()">
@@ -60,7 +60,7 @@
   <!-- Main Layout -->
   <div class="d-flex flex-row-reverse">
     <!-- Sidebar for Large Screens -->
-    <div class="sidebar-lg p-5" id="sidebar-lg" style="width: 20%;">
+    <div class="sidebar-lg p-5" id="sidebar-lg" style="width: 18%;">
       <div class="sidebar-logo-lg">
         <h1><img src="./assets/icons/Group 1.svg" alt="شعار مجتاز"> مجتاز</h1>
       </div>
@@ -109,7 +109,7 @@
     </div>
 
     <!-- Main Content Area -->
-    <main style="width: 80%;" class="mb-5">
+    <main style="width: 80%;    margin-left: 30px;" class="mb-5">
       <header >
         <!-- Sidebar for Small Screens (Hidden by default) -->
    <div class="sidebar d-lg-block p-5" id="sidebar">
@@ -237,7 +237,7 @@
           </div>
 
           <!-- Stats Cards -->
-  <div class="direction" style="width: 95%;">
+  <div class="direction" >
   <div class="d-flex gap-3 my-3 cards-scroll-wrapper">
     <!-- Card 1: Available Courses -->
     <div class="rounded-3 p-4 custom-card1 position-relative" data-aos="fade-down" data-aos-delay="100">

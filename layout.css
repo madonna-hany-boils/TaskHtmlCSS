@@ -72,8 +72,8 @@ main {
   max-height: 500px;
   opacity: 1;
   transition: 0.3s;
-  top: 32%;
-  right: 22%;
+  top: 30%;
+  right: 20%;
   padding: 0.5rem;
 }
 /* Custom Card Base Styles */
@@ -296,7 +296,7 @@ canvas {
 
 /* ===== STATISTICS CARD ===== */
 .stat-card {
-  width: 45%;
+     width: 48%;
 }
 
 .setting-icon {
@@ -315,8 +315,8 @@ canvas {
   display: none;
   position: absolute;
   z-index: 99999;
-  top: 9%;
-  left: 4%;
+    top: 20%;
+    left: 12%;
   border-radius: 10px;
   background-color: white;
 }
@@ -519,6 +519,7 @@ body, html {
   box-shadow: 0 0 20px #be1717;
   background-color: white;
   cursor: pointer;
+      margin: 0px !important;
 }
 
 .logout-container p {
@@ -655,9 +656,29 @@ body, html {
   .calendar-admin {
     display: flex !important;
   }
+  .sidemenu {
+    background: #19306f;
+    height: 100vh;
+    width: 75%;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    right: -100%;
+    transition: right 0.3s ease-in-out;
+    direction: rtl;
+    padding: 4rem;
+  }
+  
+  .sidemenu.appear {
+    right: 0;
+  }
+ 
 }
 
 /* Utility Class */
 .appear {
   display: block !important;
+}
+.table-responsive::-webkit-scrollbar{
+    display: none;
 }

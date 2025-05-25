@@ -1,0 +1,299 @@
+/* =============================================================================
+                       EXAMS SECTION LAYOUT
+============================================================================= */
+
+.exams-section {
+  background-color: var(--secondary-backgroundColor);
+}
+
+.table-container {
+  overflow: hidden;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* =============================================================================
+   TABLE STYLES
+   ============================================================================= */
+
+.table {
+  margin-bottom: 0;
+  font-family: var(--fontFamily);
+}
+
+/* Table Header */
+.table thead th {
+  color: #495057;
+  padding: 15px 10px;
+  font-weight: bold;
+  font-size: var(--fontSize);
+  font-family: var(--fontFamily);
+  background-color: white !important;
+  border-bottom: 2px solid var(--border-color-light);
+}
+
+/* Table Body */
+.table tbody td {
+  padding: 15px 10px;
+  font-size: 14px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+.table tbody tr {
+  transition: var(--transition);
+}
+
+.table tbody tr:hover {
+  background-color: var(--secondary-backgroundColor);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =============================================================================
+                     STATUS BADGES AND INDICATORS
+============================================================================= */
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: 70%;
+  padding: 3px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: var(--border-radius-pill);
+  transition: var(--transition);
+}
+
+/* Status Badge Variants */
+.status-completed {
+  color: var(--completion-color);
+  background-color: var(--success-bg);
+}
+
+.status-ready {
+  color: var(--font-color);
+  background-color: var(--ready-bg);
+}
+
+.retake-exam {
+  background-color: var(--warning-bg);
+}
+
+.see-your-answers {
+  background-color: var(--success-bg);
+}
+
+/* =============================================================================
+                       PROGRESS INDICATORS
+============================================================================= */
+
+.progress-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 50%;
+}
+
+.exam-percentage {
+  font-weight: bold;
+  font-size: var(--fontSize);
+  background-color: transparent;
+  font-family: var(--fontFamily);
+}
+.progress-exlent {
+  color: var(--success-color);
+}
+
+.progress-good {
+  color: var(--warning-color);
+}
+
+.progress-failed {
+  color: var(--danger-color);
+}
+
+/* =============================================================================
+                               STATUS ICONS
+============================================================================= */
+
+.status-icons {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.status-icon {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  font-size: 10px;
+  border-radius: var(--border-radius-small);
+  transition: var(--transition);
+}
+
+.icon-success {
+  color: white;
+  background-color: var(--success-color);
+}
+
+.icon-sync {
+  color: white;
+  background-color: var(--warning-color);
+}
+
+.action-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* =============================================================================
+                               ACTION BUTTONS
+============================================================================= */
+
+.action-btn {
+  padding: 6px 16px;
+  font-size: 10px;
+  font-weight: 500;
+  color: white;
+  background-color: var(--font-color);
+  border: none;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.action-btn:hover {
+  background-color: #0056b3;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* =============================================================================
+                                  PAGINATION
+============================================================================= */
+
+.pagination-container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+  background: white;
+  border-top: 1px solid var(--border-color);
+}
+
+.pagination .page-link {
+  margin: 0 2px;
+  padding: 8px 12px;
+  color: #40444c;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-small);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.pagination .page-link:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+  text-decoration: none;
+}
+
+.pagination .page-item.active .page-link {
+  color: white;
+  background-color: var(--font-color);
+  border-color: var(--font-color);
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #6c757d;
+  background-color: transparent;
+  border-color: var(--border-color);
+  cursor: not-allowed;
+}
+
+/* =============================================================================
+                             RESPONSIVE DESIGN
+============================================================================= */
+
+@media (max-width: 992px) {
+  .table thead th,
+  .table tbody td {
+    padding: 12px 8px;
+  }
+
+  .status-badge {
+    width: 80%;
+    font-size: 11px;
+  }
+
+  .action-btn {
+    padding: 5px 12px;
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pagination-container {
+    justify-content: center;
+    padding: 15px;
+  }
+
+  .table thead th {
+    font-size: 12px;
+  }
+
+  .table tbody td {
+    font-size: 11px;
+    padding: 10px 6px;
+  }
+
+  .status-badge {
+    width: 90%;
+    padding: 2px 4px;
+    font-size: 10px;
+  }
+
+  .progress-passed,
+  .progress-failed {
+    font-size: 12px;
+  }
+
+  .status-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .table-container {
+    border-radius: var(--border-radius-small);
+  }
+
+  .pagination .page-link {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .action-btn {
+    padding: 4px 10px;
+    font-size: 8px;
+  }
+}
